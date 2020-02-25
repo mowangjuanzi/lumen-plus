@@ -1,0 +1,14 @@
+{
+    "name": "mowangjuanzi/lumen-plus",
+    "description": "lumen framework plus",
+    "require": {
+        "laravel/lumen-framework": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mowangjuanzi\\Plus\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
