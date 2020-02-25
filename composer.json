@@ -1,6 +1,18 @@
 {
     "name": "mowangjuanzi/lumen-plus",
     "description": "lumen framework plus",
+    "keywords": ["laravel", "lumen", "plus", "make", "console"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/mowangjuanzi/lumen-plus/issues",
+        "source": "https://github.com/mowangjuanzi/lumen-plus"
+    },
+    "authors": [
+        {
+            "name": "mowangjuanzi",
+            "email": "baoguoxiao0538@hotmail.com"
+        }
+    ],
     "require": {
         "laravel/lumen-framework": "^6.0"
     },
