@@ -17,6 +17,9 @@ class LumenServiceProvider extends ServiceProvider
         'ControllerMake' => 'command.controller.make',
         'FactoryMake' => 'command.factory.make',
         'ModelMake' => 'command.model.make',
+        'RouteCache' => 'command.route.cache',
+        'RouteClear' => 'command.route.clear',
+        'RouteList' => 'command.route.list',
     ];
 
     /**
@@ -77,6 +80,42 @@ class LumenServiceProvider extends ServiceProvider
     {
         $this->app->singleton('command.factory.make', function ($app) {
             return new FactoryMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerRouteCacheCommand()
+    {
+        $this->app->singleton('command.route.cache', function () {
+            return new RouteCacheCommand();
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerRouteClearCommand()
+    {
+        $this->app->singleton('command.route.clear', function () {
+            return new RouteClearCommand();
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerRouteListCommand()
+    {
+        $this->app->singleton('command.route.list', function () {
+            return new RouteListCommand();
         });
     }
 }
