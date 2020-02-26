@@ -3,8 +3,12 @@ namespace Mowangjuanzi\Plus;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 use Illuminate\Support\ServiceProvider;
+use Mowangjuanzi\Plus\Console\ConsoleMakeCommand;
 use Mowangjuanzi\Plus\Console\ControllerMakeCommand;
+use Mowangjuanzi\Plus\Console\EventGenerateCommand;
+use Mowangjuanzi\Plus\Console\EventMakeCommand;
 use Mowangjuanzi\Plus\Console\ModelMakeCommand;
+use Mowangjuanzi\Plus\Console\ResourceMakeCommand;
 
 class LumenServiceProvider extends ServiceProvider
 {
@@ -14,9 +18,13 @@ class LumenServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
+        'ConsoleMake' => 'command.console.make',
         'ControllerMake' => 'command.controller.make',
+        'EventGenerate' => 'command.event.generate',
+        'EventMake' => 'command.event.make',
         'FactoryMake' => 'command.factory.make',
         'ModelMake' => 'command.model.make',
+        'ResourceMake' => 'command.resource.make',
         'RouteCache' => 'command.route.cache',
         'RouteClear' => 'command.route.clear',
         'RouteList' => 'command.route.list',
@@ -116,6 +124,54 @@ class LumenServiceProvider extends ServiceProvider
     {
         $this->app->singleton('command.route.list', function () {
             return new RouteListCommand();
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerConsoleMakeCommand()
+    {
+        $this->app->singleton('command.console.make', function ($app) {
+            return new ConsoleMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerResourceMakeCommand()
+    {
+        $this->app->singleton('command.resource.make', function ($app) {
+            return new ResourceMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerEventMakeCommand()
+    {
+        $this->app->singleton('command.event.make', function ($app) {
+            return new EventMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerEventGenerateCommand()
+    {
+        $this->app->singleton('command.event.generate', function () {
+            return new EventGenerateCommand();
         });
     }
 }

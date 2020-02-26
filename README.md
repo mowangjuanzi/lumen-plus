@@ -12,6 +12,10 @@ lumen feature plus
 - `make:controller`
 - `make:model`
 - `make:factory`
+- `make:command`
+- `event:generate`
+- `make:event`
+- `make:resource`
 
 2. 新增路由缓存命令
 
