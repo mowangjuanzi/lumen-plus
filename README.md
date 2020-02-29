@@ -65,7 +65,7 @@ $app->router->group([
 修改后变成这样：
 
 ```php
-if (file_exists($app->basePath("bootstrap/cache/routes.php"))) {
+if ($app->files->exists($app->basePath("bootstrap/cache/routes.php"))) {
     require_once $app->basePath("bootstrap/cache/routes.php");
 } else {
     $app->router->group([

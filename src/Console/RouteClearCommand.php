@@ -20,16 +20,34 @@ class RouteClearCommand extends Command
     protected $description = 'Remove the route cache file';
 
     /**
+     * The filesystem instance.
+     *
+     * @var \Illuminate\Filesystem\Filesystem
+     */
+    protected $files;
+
+    /**
+     * Create a new console command instance.
+     *
+     * @return void
+     */
+    public function __construct($files)
+    {
+        parent::__construct();
+        $this->files = $files;
+    }
+
+    /**
      * Execute the console command.
      *
      * @return void
      */
     public function handle()
     {
-        $router_path = $this->laravel->basePath("bootstrap/cache/routes.php");
+        $routes_path = $this->laravel->basePath("bootstrap/cache/routes.php");
 
-        if (file_exists($router_path)) {
-            unlink($router_path);
+        if ($this->files->exists($routes_path)) {
+            $this->files->delete($routes_path);
         }
 
         $this->info('Route cache cleared!');

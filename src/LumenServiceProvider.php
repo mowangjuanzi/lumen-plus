@@ -98,8 +98,8 @@ class LumenServiceProvider extends ServiceProvider
      */
     protected function registerRouteCacheCommand()
     {
-        $this->app->singleton('command.route.cache', function () {
-            return new RouteCacheCommand();
+        $this->app->singleton('command.route.cache', function ($app) {
+            return new RouteCacheCommand($app['files']);
         });
     }
 
@@ -110,8 +110,8 @@ class LumenServiceProvider extends ServiceProvider
      */
     protected function registerRouteClearCommand()
     {
-        $this->app->singleton('command.route.clear', function () {
-            return new RouteClearCommand();
+        $this->app->singleton('command.route.clear', function ($app) {
+            return new RouteClearCommand($app['files']);
         });
     }
 

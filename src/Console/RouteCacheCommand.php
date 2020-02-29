@@ -20,9 +20,17 @@ class RouteCacheCommand extends Command
     protected $description = 'Create a route cache file for faster route registration';
 
     /**
+     * The filesystem instance.
+     *
+     * @var \Illuminate\Filesystem\Filesystem
+     */
+    protected $files;
+
+    /**
      * Execute the console command.
      *
      * @return void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException | \LogicException
      */
     public function handle() {
         $this->call('route:clear');
@@ -38,16 +46,13 @@ class RouteCacheCommand extends Command
         }
 
         if (count($routes) === 0) {
-            return $this->error("Your application doesn't have any routes.");
+            $this->error("Your application doesn't have any routes.");
+            return ;
         }
 
         $path = $this->laravel->basePath("bootstrap/cache/routes.php");
 
-        if (!is_dir(dirname($path))) {
-            mkdir(dirname($path));
-        }
-
-        file_put_contents($path, str_replace("{{routes}}", base64_encode(serialize($routes)), file_get_contents(__DIR__ . "/stubs/routes.stub")));
+        $this->files->put($path, str_replace("{{routes}}", base64_encode(serialize($routes)), $this->files->get(__DIR__ . "/stubs/routes.stub")));
 
         $this->info('Routes cached successfully!');
     }
