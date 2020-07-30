@@ -7,21 +7,22 @@ lumen feature plus
 
 ## 功能
 
-1. 新增以下 `make` 命令
+1. 替换 `nikic/fast-route` 为 `illuminate/routing`
 
-- `make:controller`
-- `make:model`
-- `make:factory`
-- `make:command`
-- `event:generate`
-- `make:event`
-- `make:resource`
+2. 新增以下 `make` 命令
 
-2. 新增路由缓存命令
+    - `make:controller`
+    - `make:model`
+    - `make:factory`
+    - `make:command`
+    - `event:generate`
+    - `make:event`
+    - `make:resource`
 
-- `router:cache`
-- `router:clear`
-- `router:list`(TODO)
+3. 新增路由缓存命令
+
+    - `router:cache`
+    - `router:clear`
 
 ## 安装
 
@@ -29,6 +30,14 @@ lumen feature plus
 
 ```bash
 composer require mowangjuanzi/lumen-plus
+```
+
+使用 `Mowangjuanzi\Plus\LumenPlusApplication` 替换 `bootstrap/app.php` 中的 `Laravel\Lumen\Application`, 即：
+
+```php
+$app = new Mowangjuanzi\Plus\LumenPlusApplication(
+    dirname(__DIR__)
+);
 ```
 
 注册服务提供者
@@ -117,12 +126,6 @@ php artisan router:cache
 
 ```bash
 php artisan router:clear
-```
-
-路由列表(待完成)
-
-```bash
-php artisan router:list
 ```
 
 ## 反馈
