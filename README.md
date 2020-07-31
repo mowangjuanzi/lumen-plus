@@ -14,6 +14,7 @@ lumen feature plus
     - `make:controller`
     - `make:model`
     - `make:factory`
+    - `make:middleware`
     - `make:command`
     - `event:generate`
     - `make:event`

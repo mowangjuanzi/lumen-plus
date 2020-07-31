@@ -2,6 +2,7 @@
 namespace Mowangjuanzi\Plus;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
+use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Console\ControllerMakeCommand;
 use Mowangjuanzi\Plus\Console\ConsoleMakeCommand;
@@ -25,6 +26,7 @@ class LumenServiceProvider extends ServiceProvider
         'EventGenerate' => 'command.event.generate',
         'EventMake' => 'command.event.make',
         'FactoryMake' => 'command.factory.make',
+        'MiddlewareMake' => 'command.middleware.make',
         'ModelMake' => 'command.model.make',
         'ResourceMake' => 'command.resource.make',
         'RouteCache' => 'command.route.cache',
@@ -161,6 +163,18 @@ class LumenServiceProvider extends ServiceProvider
     {
         $this->app->singleton('command.event.generate', function () {
             return new EventGenerateCommand();
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerMiddlewareMakeCommand()
+    {
+        $this->app->singleton('command.middleware.make', function ($app) {
+            return new MiddlewareMakeCommand($app['files']);
         });
     }
 }
