@@ -3,12 +3,14 @@ namespace Mowangjuanzi\Plus;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Console\ControllerMakeCommand;
 use Mowangjuanzi\Plus\Console\ConsoleMakeCommand;
-use Mowangjuanzi\Plus\Console\ControllerMakeCommand;
 use Mowangjuanzi\Plus\Console\EventGenerateCommand;
 use Mowangjuanzi\Plus\Console\EventMakeCommand;
 use Mowangjuanzi\Plus\Console\ModelMakeCommand;
 use Mowangjuanzi\Plus\Console\ResourceMakeCommand;
+use Mowangjuanzi\Plus\Console\RouteCacheCommand;
+use Mowangjuanzi\Plus\Console\RouteClearCommand;
 
 class LumenServiceProvider extends ServiceProvider
 {
@@ -27,7 +29,6 @@ class LumenServiceProvider extends ServiceProvider
         'ResourceMake' => 'command.resource.make',
         'RouteCache' => 'command.route.cache',
         'RouteClear' => 'command.route.clear',
-        'RouteList' => 'command.route.list',
     ];
 
     /**
@@ -112,18 +113,6 @@ class LumenServiceProvider extends ServiceProvider
     {
         $this->app->singleton('command.route.clear', function ($app) {
             return new RouteClearCommand($app['files']);
-        });
-    }
-
-    /**
-     * Register the command.
-     *
-     * @return void
-     */
-    protected function registerRouteListCommand()
-    {
-        $this->app->singleton('command.route.list', function () {
-            return new RouteListCommand();
         });
     }
 

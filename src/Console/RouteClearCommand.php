@@ -1,5 +1,5 @@
 <?php
-namespace Mowangjuanzi\Plus;
+namespace Mowangjuanzi\Plus\Console;
 
 use Illuminate\Console\Command;
 
