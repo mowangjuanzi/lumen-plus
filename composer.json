@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mowangjuanzi\\Plus\\": "src/"
+            "Mowangjuanzi\\Plus\\": "src"
         }
     },
     "minimum-stability": "dev",
